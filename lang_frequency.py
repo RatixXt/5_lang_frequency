@@ -12,16 +12,13 @@ def load_data(filepath):
 
 
 def get_most_frequent_words(text):
-    words = findall(r'[a-я]\w+|[a-z]\w+', text.lower())
-    return Counter(words).most_common(10)
-
-
-def get_filepath():
-    return input(u"Введите путь к файлу:")
+    words = findall(r'[^\W0-9]+', text.lower())
+    number_of_words_to_output = 10
+    return Counter(words).most_common(number_of_words_to_output)
 
 
 if __name__ == '__main__':
-    filepath = get_filepath()
+    filepath = input(u"Введите путь к файлу:")
     data = load_data(filepath)
     if data is not None:
         common_words = get_most_frequent_words(data)
